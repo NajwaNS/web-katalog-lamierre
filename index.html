@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L@mierrè</title>
+  <style>
+    /* === Base === */
+    body {
+      margin: 0;
+      padding:0;
+      font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #fff5f7;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* full tinggi layar */
+      z-index: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('images/lamierre-pattern.png');
+      background-repeat: repeat;
+      background-size: calc(100% / 6);
+      opacity: 0.1;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    a:hover { color: #e91e63; }
+
+    /* === Navbar === */
+    header {
+      background: #fef4f8;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+    .nav-links a { color: #555; font-size: 14px; }
+    .menu-btn { display: none; background: none; border: none; cursor: pointer; }
+
+    /* === Mobile Menu === */
+    .mobile-menu {
+      display: none;
+      padding: 0 20px 20px;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 8px 0;
+      color: #555;
+    }
+
+    /* === Hero === */
+    .hero {
+      background: url("https://source.unsplash.com/700x900/?fashion,hijab,flatlay") center/cover no-repeat;
+      padding: 0;
+      text-align: center;
+      flex: 1; /* otomatis ambil sisa tinggi */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      width: 100%;
+    }
+    .hero-box {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(6px);
+      padding: 40px;
+      max-width: 500px;
+      margin: 0;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 60%;       /* biar lebih lebar di layar kecil */
+      max-width: 400px; /* tapi tetap ada batas maksimal */
+    }
+    .hero-box h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      background: #fcd6df;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      transition: background 0.3s;
+    }
+    .link-btn:hover { background: #fbbcc8; }
+    .link-btn img { width: 20px; height: 20px; }
+
+    /* === Footer === */
+    footer {
+      background: #fef4f8;
+      padding: 50px 20px;
+      font-size: 14px;
+      color: #555;
+      flex-shrink: 0;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+    }
+    footer h3 {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #222;
+    }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer ul li { margin-bottom: 5px; }
+    .socials img { width: 24px; height: 24px; transition: transform 0.3s; }
+    .socials img:hover { transform: scale(1.1); }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+      font-size: 12px;
+      color: #777;
+    }
+    /* biar bisa full */
+    .container {
+      width: 100%;
+      max-width: 100%; /* hapus batas */
+      margin: 0; /* hapus auto center */
+      padding: 0 20px; /* tetap ada padding kiri kanan biar gak mepet banget */
+     }
+
+    .payment-logos img { height: 20px; margin: 0 5px; }
+
+    /* === Responsive === */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-btn { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo">L@mierrè</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="tentang.html">Info</a>
+        <a href="contact.html">Kontak</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn">
+        ☰
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="tentang.html">Info</a>
+      <a href="contact.html">Kontak</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-box">
+      <h2>L@mierrè Links</h2>
+      <a href="https://lamierre.com" target="_blank" class="link-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/84/84128.png" alt="Website" /> Website Resmi
+      </a>
+      <a href="https://www.tiktok.com/@lamierre.id" target="_blank" class="link-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok" /> TikTok
+      </a>
+      <a href="https://shopee.co.id/lamierre" target="_blank" class="link-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/3257/3257086.png" alt="Shopee" /> Shopee Store
+      </a>
+      <a href="https://wa.me/628xxxxxx" target="_blank" class="link-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" /> WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>Customer Info</h3>
+        <ul>
+          <li><a href="carabeli.html">Cara Beli</a></li>
+          <li><a href="pembayaran.html">Informasi Pembayaran</a></li>
+          <li><a href="pengiriman.html">Pengiriman</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Information</h3>
+        <ul>
+          <li><a href="tentang.html">Tentang Kami</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="privasi.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <div class="socials">
+          <a href="https://www.instagram.com/lamierre.id" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" />
+          </a>
+          <a href="https://www.tiktok.com/@lamierre.id" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok" />
+          </a>
+          <a href="https://wa.me/628xxxxxx" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3>Sign Up</h3>
+        <p>Dapatkan promo & info eksklusif langsung ke email kamu.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="payment-logos">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Paypal_2014_logo.png" alt="Paypal" />
+      </div>
+      <p>© 2025 <strong>L@mierrè</strong> – All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.style.display = mobileMenu.style.display === "block" ? "none" : "block";
+    });
+  </script>
+</body>
+</html>
